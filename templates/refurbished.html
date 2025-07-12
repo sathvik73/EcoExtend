@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head><title>Refurbished Marketplace</title></head>
+<body>
+    <h1>Refurbished Products</h1>
+    <ul>
+    {% for item in refurbished %}
+        <li>
+            {{ item.name }} - {{ item.description }} - ${{ item.price }} - Predicted Lifespan: {{ item.lifespan }} years (AI-generated)
+            <form method="POST" style="display:inline;">
+                <input type="hidden" name="product_id" value="{{ item.id }}">
+                <input type="submit" value="Buy">
+            </form>
+        </li>
+    {% endfor %}
+    </ul>
+    <a href="/">Back to Home</a>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head><title>Predict Lifespan</title></head>
+<body>
+    <h1>Predict Product Lifespan</h1>
+    <form method="POST">
+        <label>Usage so far (units):</label>
+        <input type="number" name="usage" step="0.1"><br>
+        <label>Planned Lifespan (units):</label>
+        <input type="number" name="planned_lifespan" step="0.1" value="100"><br>
+        <input type="submit" value="Predict">
+    </form>
+    {% if prediction %}
+        <p>{{ prediction }}</p>
+    {% endif %}
+    <a href="/">Back to Home</a>
+</body>
+</html>

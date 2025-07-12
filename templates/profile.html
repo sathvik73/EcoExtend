@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block title %}Profile - EcoExtend{% endblock %}
+{% block content %}
+    <h1>Your Profile</h1>
+    <div class="card p-4">
+        <p><strong>Name:</strong> {{ user.name }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+    </div>
+    <h2 class="mt-4">Your Purchases</h2>
+    {% if purchases %}
+        <ul class="list-group">
+            {% for p in purchases %}
+                <li class="list-group-item">{{ p.name }} - ${{ p.price }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No purchases yet.</p>
+    {% endif %}
+    <h2 class="mt-4">Your Repair Requests</h2>
+    {% if repairs %}
+        <ul class="list-group">
+            {% for r in repairs %}
+                <li class="list-group-item">
+                    Product: {{ r.product_name }} - Condition: {{ r.condition }}<br>
+                    Request Date: {{ r.request_date }} - Estimated Pickup: {{ r.pickup_date }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No repair requests yet.</p>
+    {% endif %}
+    <h2 class="mt-4">Your Return Requests</h2>
+    {% if returns %}
+        <ul class="list-group">
+            {% for ret in returns %}
+                <li class="list-group-item">
+                    Product: {{ ret.product_name }} - Condition: {{ ret.condition }}<br>
+                    Return Date: {{ ret.date }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No return requests yet.</p>
+    {% endif %}
+{% endblock %}

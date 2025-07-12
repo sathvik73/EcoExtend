@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title %}Cart - EcoExtend{% endblock %}
+{% block content %}
+    <h1>Your Cart</h1>
+    {% if cart %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Lifespan</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in cart %}
+                    <tr>
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.description }}</td>
+                        <td>${{ item.price }}</td>
+                        <td>{{ item.lifespan }} years</td>
+                        <td>
+                            <form method="POST" action="{{ url_for('remove_from_cart', index=loop.index0) }}">
+                                <button type="submit" class="btn btn-danger btn-sm">Remove</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <h4>Total: ${{ total }}</h4>
+        <form method="POST" action="{{ url_for('checkout') }}">
+            <button type="submit" class="btn btn-success">Checkout</button>
+        </form>
+    {% else %}
+        <p>Your cart is empty.</p>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}Repair Product - EcoExtend{% endblock %}
+{% block content %}
+    <h1>Repair a Product</h1>
+    <form method="POST" class="card p-4">
+        <div class="mb-3">
+            <label class="form-label">Product Name:</label>
+            <input type="text" name="product_name" class="form-control" placeholder="e.g., Laptop">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Condition:</label>
+            <input type="text" name="condition" class="form-control" placeholder="e.g., broken screen">
+        </div>
+        <button type="submit" class="btn btn-primary">Request Repair</button>
+    </form>
+    {% if message %}
+        <div class="alert alert-info mt-3">{{ message }}</div>
+    {% endif %}
+{% endblock %}

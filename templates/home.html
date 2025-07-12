@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}Home - EcoExtend{% endblock %}
+{% block content %}
+    <div class="jumbotron bg-success text-white p-5 rounded">
+        <h1 class="display-4">Welcome to EcoExtend</h1>
+        <p class="lead">Your platform for sustainable shopping: Buy, Return, Refurbish, and Repair products in a circular economy.</p>
+    </div>
+    <h2 class="mt-4">Featured Products</h2>
+    <div class="row">
+        {% for product in featured %}
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <img src="{{ product.image }}" class="card-img-top" alt="{{ product.name }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.name }}</h5>
+                        <p class="card-text">{{ product.description }}</p>
+                        <p class="card-text"><strong>Price:</strong> ${{ product.price }}</p>
+                        <p class="card-text"><strong>Predicted Lifespan:</strong> {{ product.lifespan }} years</p>
+                        <form method="POST" action="{{ url_for('add_to_cart', prod_type='normal', product_id=product.id) }}">
+                            <button type="submit" class="btn btn-primary">Add to Cart</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
