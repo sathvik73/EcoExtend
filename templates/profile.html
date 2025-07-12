@@ -29,17 +29,30 @@
     {% else %}
         <p>No repair requests yet.</p>
     {% endif %}
-    <h2 class="mt-4">Your Return Requests</h2>
-    {% if returns %}
+    <h2 class="mt-4">Your Donations</h2>
+    {% if donations %}
         <ul class="list-group">
-            {% for ret in returns %}
+            {% for d in donations %}
                 <li class="list-group-item">
-                    Product: {{ ret.product_name }} - Condition: {{ ret.condition }}<br>
-                    Return Date: {{ ret.date }}
+                    Product: {{ d.product_name }} - Condition: {{ d.condition }}<br>
+                    Date: {{ d.date }}
                 </li>
             {% endfor %}
         </ul>
     {% else %}
-        <p>No return requests yet.</p>
+        <p>No donations yet.</p>
     {% endif %}
+    <h2 class="mt-4">Your Sell Requests</h2>
+{% if sell_backs %}
+    <ul class="list-group">
+        {% for ret in sell_backs %}
+            <li class="list-group-item">
+                Product: {{ ret.product_name }} - Condition: {{ ret.condition }} - Sold for: ${{ ret.sell_price }}<br>
+                Pickup: {{ ret.pickup_date }} - Date: {{ ret.date }}
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No sell requests yet.</p>
+{% endif %}
 {% endblock %}

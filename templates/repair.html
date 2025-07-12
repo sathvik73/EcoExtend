@@ -11,9 +11,30 @@
             <label class="form-label">Condition:</label>
             <input type="text" name="condition" class="form-control" placeholder="e.g., broken screen">
         </div>
-        <button type="submit" class="btn btn-primary">Request Repair</button>
+        <div class="mb-3">
+            <label class="form-label">Location (if professional):</label>
+            <input type="text" name="location" class="form-control" placeholder="e.g., New York">
+        </div>
+        <div class="mb-3">
+            <label>Repair Type:</label><br>
+            <input type="radio" name="repair_type" value="diy"> DIY (Self-Repair)<br>
+            <input type="radio" name="repair_type" value="professional" checked> Professional
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
     </form>
     {% if message %}
         <div class="alert alert-info mt-3">{{ message }}</div>
+    {% endif %}
+    {% if repair_guide %}
+        <h2>Repair Guide</h2>
+        <pre>{{ repair_guide }}</pre>
+    {% endif %}
+    {% if repair_shops %}
+        <h2>Nearest Shops</h2>
+        <p>{{ repair_shops }}</p>
+    {% endif %}
+    {% if cost_estimate %}
+        <h2>Estimated Cost</h2>
+        <p>{{ cost_estimate }}</p>
     {% endif %}
 {% endblock %}

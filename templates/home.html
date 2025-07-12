@@ -3,7 +3,7 @@
 {% block content %}
     <div class="jumbotron bg-success text-white p-5 rounded">
         <h1 class="display-4">Welcome to EcoExtend</h1>
-        <p class="lead">Your platform for sustainable shopping: Buy, Return, Refurbish, and Repair products in a circular economy.</p>
+        <p class="lead">Your platform for sustainable shopping: Buy, Sell, Rent, and Repair refurbished products.</p>
     </div>
     <h2 class="mt-4">Featured Products</h2>
     <div class="row">
@@ -16,8 +16,14 @@
                         <p class="card-text">{{ product.description }}</p>
                         <p class="card-text"><strong>Price:</strong> ${{ product.price }}</p>
                         <p class="card-text"><strong>Predicted Lifespan:</strong> {{ product.lifespan }} years</p>
-                        <form method="POST" action="{{ url_for('add_to_cart', prod_type='normal', product_id=product.id) }}">
+                        <p class="card-text"><strong>Age:</strong> {{ product.age }} months</p>
+                        <form method="POST" action="{{ url_for('add_to_cart', product_id=product.id) }}">
                             <button type="submit" class="btn btn-primary">Add to Cart</button>
+                        </form>
+                        <form method="POST" action="{{ url_for('rent_product', product_id=product.id) }}" class="mt-2">
+                            <label class="form-label">Days:</label>
+                            <input type="number" name="duration_days" class="form-control" min="1" value="7">
+                            <button type="submit" class="btn btn-secondary mt-1">Rent</button>
                         </form>
                     </div>
                 </div>

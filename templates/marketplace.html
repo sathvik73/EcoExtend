@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}{{ title }} - EcoExtend{% endblock %}
+{% block content %}
+    <h1>{{ title }}</h1>
+    <div class="row">
+        {% for product in products %}
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <img src="{{ product.image }}" class="card-img-top" alt="{{ product.name }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.name }}</h5>
+                        <p class="card-text">{{ product.description }}</p>
+                        <p class="card-text"><strong>Price:</strong> ${{ product.price }}</p>
+                        <p class="card-text"><strong>Predicted Lifespan:</strong> {{ product.lifespan }} years</p>
+                        <p class="card-text"><strong>Age:</strong> {{ product.age }} months</p>
+                        <form method="POST" action="{{ url_for('add_to_cart', product_id=product.id) }}">
+                            <button type="submit" class="btn btn-primary">Add to Cart</button>
+                        </form>
+                        <form method="POST" action="{{ url_for('rent_product', product_id=product.id) }}" class="mt-2">
+                            <label class="form-label">Days:</label>
+                            <input type="number" name="duration_days" class="form-control" min="1" value="7">
+                            <button type="submit" class="btn btn-secondary mt-1">Rent</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
